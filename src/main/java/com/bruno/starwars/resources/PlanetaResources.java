@@ -2,7 +2,6 @@ package com.bruno.starwars.resources;
 
 import java.util.List;
 
-import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +17,7 @@ import com.bruno.starwars.service.exception.ServiceException;
 
 @RestController
 @RequestMapping("/planeta")
-public class PlanetaResources implements ApiCrudResources<PlanetaDTO> {
+public class PlanetaResources implements ApiCrudResources<PlanetaDTO, String> {
 
 	@Autowired
 	private PlanetaService planetaService;
@@ -32,13 +31,13 @@ public class PlanetaResources implements ApiCrudResources<PlanetaDTO> {
 	}
 
 	@Override
-	public ResponseEntity<Void> update(PlanetaDTO dto, Long id) throws ServiceException {
-		planetaService.update(new Planeta(dto, id));
+	public ResponseEntity<Void> update(PlanetaDTO dto, String id) throws ServiceException {
+		planetaService.update(new Planeta(dto, id.toString()));
 		return ResponseEntityUtil.noContent();
 	}
 
 	@Override
-	public ResponseEntity<PlanetaDTO> find(Long id) throws ObjectNotFoundException, ServiceException {
+	public ResponseEntity<PlanetaDTO> find(String id) throws ServiceException {
 		return ResponseEntityUtil.find(planetaService.findById(id), PlanetaDTO::new);
 	}
 

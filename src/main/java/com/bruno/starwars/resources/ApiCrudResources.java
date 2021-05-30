@@ -2,7 +2,6 @@ package com.bruno.starwars.resources;
 
 import java.util.List;
 
-import org.hibernate.ObjectNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,9 +16,12 @@ import com.bruno.starwars.service.exception.ServiceException;
  * 
  * @author Bruno
  *
- * @param <T> dto
+ * @param <T>  dto
+ * @param <ID> id
+ * 
  */
-public interface ApiCrudResources<T> {
+
+public interface ApiCrudResources<T, ID> {
 
 	String PATH_ID = "/{id}";
 	String LISTAR = "/listar";
@@ -28,10 +30,10 @@ public interface ApiCrudResources<T> {
 	ResponseEntity<T> insert(@RequestBody T dto) throws ServiceException;
 
 	@PutMapping(value = PATH_ID)
-	ResponseEntity<Void> update(@RequestBody T dto, @PathVariable Long id) throws ServiceException;
+	ResponseEntity<Void> update(@RequestBody T dto, @PathVariable ID id) throws ServiceException;
 
 	@GetMapping(value = PATH_ID)
-	ResponseEntity<T> find(@PathVariable Long id) throws ObjectNotFoundException, ServiceException;
+	ResponseEntity<T> find(@PathVariable ID id) throws ServiceException;
 
 	@GetMapping(value = LISTAR)
 	ResponseEntity<List<T>> findAll();

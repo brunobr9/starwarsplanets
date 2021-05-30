@@ -17,7 +17,7 @@ import com.bruno.starwars.service.exception.ServiceException;
  *
  */
 @Service
-public class PlanetaService extends AbstractCrudService<Planeta, Long> {
+public class PlanetaService extends AbstractCrudService<Planeta, String> {
 
 	@Autowired
 	private PlanetaRepository planetaRepository;
@@ -28,4 +28,13 @@ public class PlanetaService extends AbstractCrudService<Planeta, Long> {
 		return objeto.orElseThrow(() -> new ObjectNotFoundException(nome, Planeta.class.getName()));
 	}
 
+	@Override
+	public Planeta insert(Planeta object) throws ServiceException {
+		Planeta planetaDB = planetaRepository.findByNomeIgnoringCase(object.getNome());
+		if (planetaDB != null) {
+			throw new ServiceException("Planeta de nome " + planetaDB.getNome().toUpperCase() + " já existe.");
+		}
+
+		return super.insert(object);
+	}
 }

@@ -11,7 +11,7 @@ import com.bruno.starwars.domain.Planeta;
  *
  */
 @Repository
-public interface PlanetaRepository extends IdLongRepository<Planeta> {
+public interface PlanetaRepository extends RepositoryInterface<Planeta, String> {
 
 	Planeta findByNomeIgnoringCase(String nome);
 }

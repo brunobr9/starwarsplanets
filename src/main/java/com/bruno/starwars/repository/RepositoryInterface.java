@@ -1,6 +1,6 @@
 package com.bruno.starwars.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.repository.NoRepositoryBean;
 
 import com.bruno.starwars.domain.IdEntity;
@@ -14,6 +14,6 @@ import com.bruno.starwars.domain.IdEntity;
  * @param <ID> tipo do ID
  */
 @NoRepositoryBean
-public interface RepositoryInterface<T extends IdEntity<ID>, ID> extends JpaRepository<T, ID> {
+public interface RepositoryInterface<T extends IdEntity<ID>, ID> extends MongoRepository<T, ID> {
 
 }

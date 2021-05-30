@@ -4,16 +4,18 @@ import com.bruno.starwars.domain.Planeta;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @EqualsAndHashCode
-public class PlanetaDTO implements IdEntityDTO<Long> {
+@NoArgsConstructor
+public class PlanetaDTO implements IdEntityDTO<String> {
 
 	private static final long serialVersionUID = 1L;
 
-	private Long id;
+	private String id;
 	private String nome;
 	private String clima;
 	private String terreno;
