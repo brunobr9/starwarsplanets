@@ -24,6 +24,6 @@ public class SWService {
 
 	public int getQtdFilmesPlaneta(String nome) {
 		SWResult[] results = getPlaneta(nome).getResults();
-		return results.length > 0 ? results[0].getFilms().length : 0;
+		return results != null && results.length > 0 ? results[0].getFilms().length : 0;
 	}
 }

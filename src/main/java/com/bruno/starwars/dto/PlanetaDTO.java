@@ -26,5 +26,6 @@ public class PlanetaDTO implements IdEntityDTO<String> {
 		this.nome = planeta.getNome();
 		this.clima = planeta.getClima();
 		this.terreno = planeta.getTerreno();
+		this.qtdFilmes = planeta.getQtdFilmes();
 	}
 }

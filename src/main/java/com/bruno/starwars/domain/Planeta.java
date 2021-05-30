@@ -1,6 +1,7 @@
 package com.bruno.starwars.domain;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.bruno.starwars.dto.PlanetaDTO;
@@ -31,6 +32,9 @@ public class Planeta implements IdEntity<String> {
 	private String clima;
 
 	private String terreno;
+
+	@Transient
+	private int qtdFilmes;
 
 	public Planeta(PlanetaDTO dto) {
 		this.nome = dto.getNome();
